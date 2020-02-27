@@ -57,4 +57,60 @@ class Point3D extends Point {
 
 2. 조상 클래스의 메소드보다 많은 수의 예외를 선언할 수 있다.
 
-3. 인스턴스메소드를 static메소드로 또는 그 반대로 변강할 수 없다.
+3. 인스턴스메소드를 static메소드로 또는 그 반대로 변경할 수 없다.
+
+
+
+### 3. super
+
+\- super는 자손 클래스에서 조상 클래스로부터 상속받은 멤버를 참조하는데 사용되는 참조변수이다.
+
+(멤버변수와 지역벼수의 이름이 같을 때 this를 붙여서 구별했듯이 상속받은 멤버와 자신의 이름이 같을 때는 super를 붙여서 구별할 수 있다.)
+
+\- 조상 클래스로부터 상속받은 멤버도 자손 클래스 자신의 멤버이므로 super 대신 this를 사용할 수 있다.
+
+그래도 조상 클래스의 멤버와 자손클래스의 멤버가 중복 정의되어 서로 구별해야하는 경우에만 super를 사용하는 것이 좋다.
+
+\- 조상의 멤버와 자신의 멤버를 구별하는데 사용된다는 점을 제외하고는 super와 this는 근본적으로 같다.
+
+\- 모든 인스턴스메소드에서는 자신이 속한 인스턴스의 주소가 지역변수로 저장되는데, 이것이 참조변수인 this와 super의 값이 된다.
+
+<br>
+
+------------------------------코드예시------------------------------
+
+public class SuperTest2 {
+	public static void main(String args[]) {
+		Child c = new Child();
+		c.method(15);
+	}
+}
+class Parent {
+	int x=10;
+}
+
+class Child extends Parent {
+	int x=20;
+
+​	void method(int x) {
+​		System.out.println("x=" + x);
+​		System.out.println("this.x=" + this.x);
+​		System.out.println("super.x="+ super.x);
+​	}
+}
+
+--------------------------다음 코드의 결과값은--------------------------
+
+x=15
+this.x=20
+super.x=10
+
+이다.
+
+<br>
+
+### 4. super() - 조상 클래스의 생성자
+
+this()와 마찬가지로 super() 역시 생성자이다.
+
+this()는 같은 클래스의 다른 생성자를 호출하는 데 사용되지만, super()는 조상 클래스의 생성자를 호출하는데 사용된다.
