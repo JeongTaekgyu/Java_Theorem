@@ -10,9 +10,9 @@
 
 단, 접근 제어자는 한 번에 네 가지 중하나만 선택해서 사용할 수 있다.
 
+<br>
 
-
-### 1. static - 클래스의, 공통적인
+## 1. static - 클래스의, 공통적인
 
 인스턴스 변수는 하나의 클래스로부터 생성되었더라도 각기 다른 값을 유지하지만, 클래스변수(static 멤버변수)는 인스턴스에 관계없이 같은 값을 갖는다. 그 이유는 하나의 변수를 모든 인스턴스가 공유하기 때문이다.
 
@@ -31,10 +31,10 @@ static이 사용될 수 있는 곳 - 멤버변수, 메소드, 초기화 블록
 
 ex)
 
+<pre><code>
 class StaticTest{
 	static int width = 200;		// 클래스 변수(static변수)
 	static int height = 200;	// 클래스 변수(static변수)
-
 ​	static {
 ​		// static변수의 복잡한 초기화 수행
 ​	}
@@ -42,6 +42,7 @@ class StaticTest{
 ​		return a > b ? a : b;
 ​	}
 }
+</code></pre>
 
 <br>
 
@@ -56,16 +57,19 @@ final이 변수에 사용되면 값을 변경할 수 없는 상수가 되며, �
 | final  | 멤버변수 | - 변수 앞에 final이 붙으면, 값을 변경할 수 없는 상수가 된다. |
 | final  | 지역변수 | - 변수 앞에 final이 붙으면, 값을 변경할 수 없는 상수가 된다. |
 
-ex)
+ex
 
+<pre><code>
 final class FianlTest{				// 조상이 될 수 없는 클래스
 	final int MAX_SIZE = 10;		// 값을 변경할 수 없는 멤버변수 (상수)
-
 ​	final void getMaxSize() {		// 오버라이딩할 수 없는 메소드 (변경불가)
 ​		final int LV = MAX_SIZE;	// 값을 변경할 수 없는 지역변수 (상수)
 ​		return MAX_SIZE;
 ​	}
 }
+</code></pre>
+
+
 
 <br>
 
@@ -79,26 +83,23 @@ final이 붙은 변수는 상수이므로 일반적으로 선언과 초기화를
 
 ex)
 
+<pre><code>
 class Card {
 	final int NUMBER;		// 상수지만 선언과 함께 초기화 하지 않고
 	final String KIND;		// 생성자에서 단 한번만 초기화할 수 있다.
 	static int width  = 100;	
 	static int height = 250;
-
 ​	Card(String kind, int num) {	
 ​		KIND = kind;
 ​		NUMBER = num;
 ​	}
-
 ​	Card() {
 ​		this("HEART", 1);
 ​	}
-
 ​	public String toString() {
 ​		return KIND +" "+ NUMBER;
 ​	}
 }
-
 class FinalCardTest {
 	public static void main(String args[]) {
 		Card c = new Card("HEART", 10);
@@ -108,6 +109,9 @@ class FinalCardTest {
 		System.out.println(c); // System.out.println(c.toString());
 	}
 }
+</code></pre>
+
+
 
 <br>
 
@@ -119,4 +123,6 @@ abstract가 사용될 수 있는 곳 - 클래스, 메소드
 | -------- | ------ | ------------------------------------------------------------ |
 | abstract | 클래스 | 클래스 내에 추상 메소드가 선언되어 있음을 의미한다.          |
 | abstract | 메소드 | 선언부만 작성하고 구현부는 작성하지 않은 추상 메소드임을 알린다. |
+
+
 
