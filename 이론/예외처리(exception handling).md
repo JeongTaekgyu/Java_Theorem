@@ -287,3 +287,49 @@ void method() throws Exception {
 오바러아딩에서 살펴본 것과 같이, 오버라이딩할 때는 단순히 선언된 예외의 개수가 아니라 상속관계까지 고려해야한다.
 
 메서드의 선언부에 예외를 선언함으로써 메서드를 사용하려는 사람이 메서드의 선언부를 보았을 때, 이 메서드를 사용하기 위해서는 어떠한 예외들이 처리되어져야 하는지 쉽게 알 수 있다.
+
+<br>
+
+## 8. finally 블럭
+
+finally 블럭은 예외의 발생여부에 상관없이 실행되어야할 코드를 포함시킬 목적으로 사용된다.
+
+```java
+try {
+    // 예외가 발생할 가능
+} catch ( Exception1 e1)
+{
+    // 예외처리를 위한 문장을 적는다.
+} finally {
+    // 예외의 발생여부에 관계없이 항상 수행되어야하는 문장들을 넣는다.
+    // finally 블럭은 try-catch문의 맨 마지막에 위치해야 한다.
+}
+```
+
+<br>
+
+**참고로 try블럭이나 catch블럭 문장 수행중에 return문이 실행되는 경우에도 fianally 블럭의 문장들이 먼저 실행된 후에, 현재 실행 중인 메서드를 종료한다.**
+
+```java
+class FinallyTest3 {
+	public static void main(String args[]) {
+		// method1()은 static메서드이므로 인스턴스 생성없이 직접 호출이 가능하다.
+		FinallyTest3.method1();		
+        System.out.println("method1()의 수행을 마치고 main메서드로 돌아왔습니다.");
+	}	// main메서드의 끝
+
+	static void method1() {
+		try {
+			System.out.println("method1()이 호출되었습니다.");
+			return;		// 현재 실행 중인 메서드를 종료한다.
+		}	catch (Exception e)	{
+			e.printStackTrace();
+		} finally {
+			System.out.println("method1()의 finally블럭이 실행되었습니다.");
+		}
+	}	// method1메서드의 끝
+}
+```
+
+
+
