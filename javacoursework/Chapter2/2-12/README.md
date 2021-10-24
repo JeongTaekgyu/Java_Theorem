@@ -29,14 +29,16 @@ public void setYear(int year)
 
 - 생성자에서 다른 생성자를 호출하는 경우, 인스턴스의 생성이 완전하지 않은 상태이므로 this() statement 이전에 다른 statement를 쓸 수 없음
 
-```
+```java
 public class Person {
 
 	String name;
 	int age;
 	
 	public Person() {
-		this("이름없음", 1);
+		// 생성자에서 다른 생성자를 호출하는 경우, 인스턴스의 생성이 완전하지 않은 상태이므로 this() statement 이전에 다른 statement를 쓸 수 없음(다른 코드를 사용할 수 없음)
+		this("이름없음", 1);	// 호출이 되는 순간에는 인스턴스가 다 생성이 안돼있음
+        // Person(String name, int age) 이 끝나야 생성이 됨
 	}
 	
 	public Person(String name, int age) {
