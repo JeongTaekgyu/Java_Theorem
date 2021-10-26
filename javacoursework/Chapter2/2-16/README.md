@@ -1,4 +1,4 @@
-# 16. 여러 인스턴스에서 공통으로 사용하는 변수를 선언하자 - static 변수
+# 16. 여러 인스턴스에서 공통으로 사용하는 변수를 선언하자 - static 변수(클래스 변수)
 
 ## 공통으로 사용하는 변수가 필요한 경우 
 
@@ -16,10 +16,8 @@
 
 static int serialNum;
 
-- 인스턴스가 생성될 때 만들어지는 변수가 아닌, 처음 프로그램이 메모리에 로딩될 때 메모리를 할당
-
+- **인스턴스가 생성될 때 만들어지는 변수가 아닌, 처음 프로그램이 메모리에 로딩될 때 메모리를 할당 (프로그램이 종료될 때 해제됨)**
 - 클래스 변수, 정적변수라고도 함(vs. 인스턴스 변수)
-
 - 인스턴스 생성과 상관 없이 사용 가능하므로 클래스 이름으로 직접 참조
 
  Student.serialNum = 100;
@@ -28,7 +26,7 @@ static int serialNum;
 ## static 변수 테스트하기
 
 Employee.java
-```
+```java
 public class Employee {
 
 	public static int serialNum = 1000;
@@ -59,10 +57,11 @@ public class Employee {
 }
 ```
 EmployeeTest.java
-```
+```java
 public class EmployeeTest {
 
 	public static void main(String[] args) {
+		// employeeLee 는 메인안의 지역변수이다.(Employee 타입으로 선언된 지역변수이다.)
 		Employee employeeLee = new Employee();
 		employeeLee.setEmployeeName("이순신");
 		System.out.println(employeeLee.serialNum);
@@ -87,7 +86,7 @@ public class EmployeeTest {
 ## 회사원이 입사할 때마다 새로운 사번 부여하기
 
 Employee.java 생성자 구현
-```
+```java
 ...
 
 	public Employee()
@@ -101,7 +100,7 @@ Employee.java 생성자 구현
 ```
 
 EmployeeTest.java
-```
+```java
 public class EmployeeTest {
 
 	public static void main(String[] args) {
